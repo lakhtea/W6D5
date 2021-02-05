@@ -14,7 +14,10 @@
                 Sex
             </th>
              <th>
-                description
+                Description
+            </th>
+            <th>
+                Rental Requests
             </th>
         </tr>
     </thead>
@@ -34,6 +37,11 @@
             </td>
              <td>
                 <%= @cat.description %>
+            </td>
+                <%= @cat.cat_rental_requests.order(:start_date).each do |request| %>
+            <td>
+                Start Date:<%= request.start_date %>
+                End Date:<%= request.end_date %>
             </td>
         </tr>
     </tbody>

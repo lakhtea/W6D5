@@ -1,6 +1,7 @@
 class CatRentalRequestsController < ApplicationController
     def new
         render :new
+        @cat_rental_request = CatRentalRequest.new
     end
 
     def create
