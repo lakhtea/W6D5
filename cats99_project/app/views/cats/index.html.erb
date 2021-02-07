@@ -1,9 +1,16 @@
-<h1>Show All Cats</h1>
 
-<ul>
+<div class="ui middle aligned selection list">
+
+<h1>Cats</h1>
+
+<ul style="list-style:none;">
     <% @cats.each do |cat| %>
-    <li> 
-        <a href="<%= cat_url(cat) %>"><%= cat.name %></a> 
+    <li class="item"> 
+        <h3><a class="header" href="<%= cat_url(cat) %>"><%= cat.name %></a></h3>
     </li>
     <% end %>
 </ul>
+
+</div>
+
+<a style="background-color:#8fcbff;" class="ui button" href="<%= new_cat_url %>">+ Build-A-Cat</a>

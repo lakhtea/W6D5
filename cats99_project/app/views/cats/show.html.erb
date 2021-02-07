@@ -1,7 +1,7 @@
-<table>
+<table class="ui celled padded table">
     <thead>
         <tr>
-            <th>
+            <th class="single line">
                 Name
             </th>
              <th>
@@ -38,11 +38,27 @@
              <td>
                 <%= @cat.description %>
             </td>
-                <%= @cat.cat_rental_requests.order(:start_date).each do |request| %>
             <td>
+                <% @cat.cat_rental_requests.order(:start_date).each do |request| %>
                 Start Date:<%= request.start_date %>
                 End Date:<%= request.end_date %>
+                Status: <%= request.status %>
+                <% if request.pending? %>
+                    <form style="display:inline;" action="<%= approve_cat_rental_request_url(request) %>" method="POST">
+                        <input class="ui button" type="submit" value="Approve" %>
+                    </form>
+                
+                    <form style="display:inline;" action="<%= deny_cat_rental_request_url(request) %>" method="POST">
+                        <input class="ui button" type="submit" value="Deny" %>
+                    </form>
+                <% end %>
+                <br>
+                <% end %>
+                <a class="ui button" type="submit" href="<%= new_cat_rental_request_url %>">New Rental Request</a>
             </td>
+            
         </tr>
     </tbody>
 </table>
+<a class="ui button" type="submit" href="<%= edit_cat_url %>">Edit</a>
+

@@ -9,5 +9,15 @@
 
 Cat.destroy_all
 ApplicationRecord.connection.reset_pk_sequence!("cats")
+ApplicationRecord.connection.reset_pk_sequence!("cat_rental_requests")
 
 Cat.create!(birth_date: "2015/01/20", name: "Garfield", sex: "F", description: "phat", color: "orange")
+
+CatRentalRequest.create!(cat_id: "1", start_date: "2015/01/22", end_date: "2015/01/27", status: "PENDING")
+CatRentalRequest.create!(cat_id: "1", start_date: "2015/02/22", end_date: "2015/02/27", status: "PENDING")
+CatRentalRequest.create!(cat_id: "1", start_date: "2015/03/22", end_date: "2015/03/27", status: "PENDING")
+CatRentalRequest.create!(cat_id: "1", start_date: "2015/04/22", end_date: "2015/04/27", status: "PENDING")
+CatRentalRequest.create!(cat_id: "1", start_date: "2015/02/22", end_date: "2015/02/27", status: "PENDING")
+CatRentalRequest.create!(cat_id: "1", start_date: "2015/02/22", end_date: "2015/02/27", status: "PENDING")
+CatRentalRequest.create!(cat_id: "1", start_date: "2015/02/22", end_date: "2015/02/27", status: "PENDING")
+CatRentalRequest.create!(cat_id: "1", start_date: "2015/02/22", end_date: "2015/02/27", status: "PENDING")

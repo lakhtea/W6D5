@@ -1,25 +1,33 @@
 <h1>Create a new request</h1>
 
-<form action="cat_rental_requests_url" method = "POST">
-    <label for="cats">Choose a cat to rent:</label>
-    <select name="cats" id="cats">
-        <option value="Select a cat" selected disabled>Select a cat</option>
-        <% Cat.all.each do |cat| %>
-        <option value="<%= cat.name %>"> <%= cat.name %> </option>
-        <% end %>
-    </select>
+<%= render "shared/errors" %>
+
+<form class="ui form" action="<%= cat_rental_requests_url %>" method = "POST">
+    <div class="field">
+        <label for="cats">Choose a cat to rent:</label>
+        <select name="cat_rental_request[cat_id]" id="cats">
+            <option value="Select a cat" selected disabled>Select a cat</option>
+            <% Cat.all.each do |cat| %>
+            <option value="<%= cat.id %>"> <%= cat.name %> </option>
+            <% end %>
+        </select>
+    </div>
 
     <br>
 
-    <label for="start_date" >Start Date:</label>
-    <input id="start_date" type="date" name="cat_rental_request[start_date]">
+    <div class="field">
+        <label for="start_date" >Start Date:</label>
+        <input id="start_date" type="date" name="cat_rental_request[start_date]" value="<%= @cat_rental_request.start_date %>" >
 
-    <label for="end_date" >End Date:</label>    
-    <input id="end_date" type="date" name="cat_rental_request[end_date]" >
+        <label for="end_date" >End Date:</label>    
+        <input id="end_date" type="date" name="cat_rental_request[end_date]" value="<%= @cat_rental_request.end_date %>" >
+    </div>
 
     <br>
 
-    <input type="submit" value="Create Request">
+    <input class="ui button" type="submit" value="Create Request">
 
 </form>
 
+
+<%# name is important! %>

@@ -1,6 +1,6 @@
 class CatsController < ApplicationController
     def index
-        @cats = Cat.all
+        @cats = Cat.all.order(:id)
         render :index
     end
 
@@ -23,6 +23,7 @@ class CatsController < ApplicationController
         if @cat.save
             redirect_to cat_url(@cat)
         else
+            flash.now[:errors] = @cat.errors.full_messages
             render :new
         end
     end

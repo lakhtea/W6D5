@@ -1,21 +1,25 @@
 <% redirect_url = ( cat.persisted? ? cat_url(cat) : cats_url ) %>
 
-<form action="<%= redirect_url %>" method="POST">
-
+<form action="<%= redirect_url %>" method="POST" class="ui form">
+    
     <% if cat.persisted? %>
         <input type="hidden" name="_method" value="PATCH">
     <% end %>
-
-    <label for="name">Name</label>
-    <input type="text" id="name" name="cat[name]" value="<%= cat.name %>">
-
-    <br>
-
-    <label for="bd">Birth Date</label>
-    <input type="date" id="bd" name="cat[birth_date]" value="<%= cat.birth_date %>">
+    <div class="field" >
+        <label for="name">Name</label>
+        <input type="text" id="name" name="cat[name]" value="<%= cat.name %>">
+    </div>
 
     <br>
 
+    <div class="field" >
+        <label for="bd">Birth Date</label>
+        <input type="date" id="bd" name="cat[birth_date]" value="<%= cat.birth_date %>">
+    </div>
+
+    <br>
+
+    <div class="field">
     <label for="colors">Select a color:</label>
     <select id="colors" name="cat[color]">
         <option disabled <%= cat.color ? "" : "selected" %> >Select a color</option>
@@ -23,24 +27,29 @@
             <option value="<%= color %>" <%= cat.color == color ? "selected": "" %> ><%= color.capitalize %></option>
         <% end %>
     </select>
-
-    <br>
-
-    <p> Select a sex:</p>
-    <div>
-        <label for="male">Male</label>
-        <input type="radio" id="male" name="cat[sex]" value="M" <%= cat.sex == "M" ? "checked": "" %> >
-        <label for="female">Female</label>
-        <input type="radio" id="female" name="cat[sex]" value="F" <%= cat.sex == "F" ? "checked": "" %> >
     </div>
 
     <br>
 
-    <label for="description">Description</label>
-    <textarea id="description" name="cat[description]">
-        <%= cat.description %>
-    </textarea>
+    
+    <div class="field">
+        <label for="dropdown"> Select a sex:</label>   
+        <div id="dropdown">
+            <label for="male">Male</label>
+            <input type="radio" id="male" name="cat[sex]" value="M" <%= cat.sex == "M" ? "checked": "" %> >
+            <label for="female">Female</label>
+            <input type="radio" id="female" name="cat[sex]" value="F" <%= cat.sex == "F" ? "checked": "" %> >
+        </div>
+    </div>
+
+    <br>
+    <div class="field">
+        <label for="description">Description</label>
+        <textarea style="resize: none;" id="description" name="cat[description]">
+            <%= cat.description %>
+        </textarea>
+    </div>
    
-    <input type="submit" value= <%= cat.persisted? ? "Edit Cat" : "Create Cat" %> >
+    <input class="ui button" type="submit" value= <%= cat.persisted? ? "Edit Cat" : "Create Cat" %>  >
 
 </form>
